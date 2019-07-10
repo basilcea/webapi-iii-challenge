@@ -1,4 +1,5 @@
-const express = "express";
+const express = require ("express");
+const router = require('./users/userRouter')
 
 const server = express();
 
