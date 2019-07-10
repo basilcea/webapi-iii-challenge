@@ -21,5 +21,9 @@ function logger(req, res, next) {
 
   next();
 }
+server.use('/api/users',logger(), router)
 
+server.listen(2020 , ()=> {
+  console.log('Listening into the future - 2020')
+})
 module.exports = server;
