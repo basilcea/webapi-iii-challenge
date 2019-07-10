@@ -3,8 +3,7 @@ const router = require('./users/userRouter')
 
 const server = express();
 
-server.use(express.json());
-server.use(express.urlencoded({ extended: true }));
+
 
 server.get("/", (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);
@@ -22,7 +21,11 @@ function logger(req, res, next) {
 
   next();
 }
-server.use('/api/users',logger(), router)
+
+server.use(express.json());
+server.use(logger);
+server.use(express.urlencoded({ extended: true }));
+server.use('/api/users', router )
 
 server.listen(2020 , ()=> {
   console.log('Listening into the future - 2020')
