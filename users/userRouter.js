@@ -56,7 +56,7 @@ router.get("/:id", validate.validateUserId, async (req, res) => {
 router.get("/:id/posts", validate.validateUserId , async(req, res) => {
     const {id} = req.params;
     try{
-        const data = await Post.getUserPosts(id);
+        const data = await User.getUserPosts(id);
         status(res , data, 200)
     }
     catch(err){
@@ -67,7 +67,7 @@ router.get("/:id/posts", validate.validateUserId , async(req, res) => {
 router.delete("/:id", validate.validateUserId , async(req, res) => {
     const {id} = req.params;
     try{
-        await Users.remove(id);
+        await User.remove(id);
         status(res, 'Deleted Successfully',200)
     }
     catch(err){

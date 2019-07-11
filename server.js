@@ -13,6 +13,7 @@ server.get("/", (req, res) => {
 
 function logger(req, res, next) {
   console.log({
+    Request_body: req.body,
     Request_Method: req.method,
     Request_Url: req.url,
     Timestamp: new Date().toISOString(),
