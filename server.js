@@ -3,7 +3,7 @@ const router = require('./users/userRouter')
 
 const server = express();
 
-
+const Port = process.env.PORT || 2020
 
 server.get("/", (req, res) => {
   res.send(`<h2>Let's write some middleware!</h2>`);
@@ -13,13 +13,10 @@ server.get("/", (req, res) => {
 
 function logger(req, res, next) {
   console.log({
-    Request_body: req.body,
     Request_Method: req.method,
     Request_Url: req.url,
     Timestamp: new Date().toISOString(),
-    Origin: req.get("Origin")
   });
-
   next();
 }
 
@@ -28,7 +25,7 @@ server.use(logger);
 server.use(express.urlencoded({ extended: true }));
 server.use('/api/users', router )
 
-server.listen(2020 , ()=> {
+server.listen(Port , ()=> {
   console.log('Listening into the future - 2020')
 })
 module.exports = server;
